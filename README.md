@@ -4,8 +4,8 @@
   <img src="https://img.shields.io/badge/nuremics--labs-1.0.0+-007bff" />
   <img src="https://img.shields.io/badge/marimo-0.14.17+-1c6f60" />
   <img src="https://img.shields.io/badge/Pandas-2.1.1+-0b0153?style=flat&logo=pandas&logoColor=white" />
-  <img src="https://img.shields.io/badge/pyyaml-6.0.3+-cb171e" />
   <img src="https://img.shields.io/badge/platformdirs-3.5+-364f87" />
+  <img src="https://img.shields.io/badge/pyyaml-5.4.1+-cb171e" />
   <img src="https://img.shields.io/badge/rclone-1.72.1+-70caf2?style=flat&logo=rclone&logoColor=white" />
 </p>
 

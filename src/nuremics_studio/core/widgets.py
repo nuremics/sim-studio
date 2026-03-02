@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional, Tuple
 
 import marimo as mo
 import pandas as pd
@@ -390,7 +391,7 @@ def datasets(
     working_path: Path,
     list_studies: list[str],
     set_state: mo.state,
-) -> tuple[mo.ui.data_editor | None, dict[str, mo.ui.data_editor | None]]:
+) -> Tuple[Optional[mo.ui.data_editor], dict[str, Optional[mo.ui.data_editor]]]:
     
     df_datasets = pd.DataFrame()
     for study in list_studies:
@@ -828,7 +829,7 @@ def results(
     app: Application,
     working_path: Path,
     list_studies: list,
-) -> (mo.ui.tabs | None):
+) -> Optional[mo.ui.tabs]:
     
     module_path = f"nuremics_studio.apps.{app.workflow.app_name}.widgets"
     module = utils.load_module(
