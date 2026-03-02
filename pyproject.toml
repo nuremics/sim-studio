@@ -12,7 +12,7 @@ license-files = [
   "LICENSE_TRADEMARK",
 ]
 dependencies = [
-  "nuremics-labs @ git+https://github.com/nuremics/nuremics-labs.git@main"
+  "nuremics @ git+https://github.com/nuremics/nuremics.git@main"
 ]
 
 [project.urls]
