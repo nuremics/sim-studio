@@ -1,6 +1,5 @@
 <img src="https://raw.githubusercontent.com/nuremics/nuremics.github.io/main/images/banner.jpg" width="100%">
 <p align="left">
-  <h1 style="margin-top:0.2em;">nuRemics</h1>
   <img src="https://img.shields.io/badge/Python-3.9+-ffcd3b?style=flat&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/nuremics--labs-1.0.0+-007bff" />
   <img src="https://img.shields.io/badge/marimo-0.14.17+-1c6f60" />
