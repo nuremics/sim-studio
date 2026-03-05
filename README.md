@@ -9,15 +9,8 @@
   <img src="https://img.shields.io/badge/rclone-1.72.1+-70caf2?style=flat&logo=rclone&logoColor=white" />
 </p>
 
-<!-- # nuRemics
-_An open-source Python framework for building software-grade scientific tools._ -->
-
-<p style="font-size:22px; margin-top:0; margin-bottom:0;">
-  <strong>nuRemics</strong>
-</p>
-<p style="font-size:16px; font-style:italic; margin-top:0;">
-  An open-source Python framework for building software-grade scientific tools.
-</p>
+# nuRemics
+_An open-source Python framework for building software-grade scientific tools._
 
 🔬 Scientific agility — engineering rigor.<br>
 🧩 Modular by design — no more siloed tools.<br>
