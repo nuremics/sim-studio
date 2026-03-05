@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/rclone-1.72.1+-70caf2?style=flat&logo=rclone&logoColor=white" />
 </p>
 
-# nuRemics
+## nuRemics
 _An open-source Python framework for building software-grade scientific tools._
 
 🔬 Scientific agility — engineering rigor.<br>
