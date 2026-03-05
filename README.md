@@ -19,11 +19,11 @@ _An open-source Python framework for building software-grade scientific tools._
 📈 Built to scale — from lab to industry. <br>
 🌐 Community-driven — innovation thrives together.
 
-## Why nuRemics?
+### Why nuRemics?
 
 🎥 [Watch the video](https://www.suffisciens.com/nuremics)
 
-## Overview
+### Overview
 
 The **nuRemics** framework provides a dedicated environment to build custom software tools designed for the automated production of scientific results at scale, ensuring systematic reproducibility and full traceability across every execution. This is achieved through a clear separation of concerns, organized into the following layered structure:
 <br>
@@ -52,6 +52,6 @@ It orchestrates how the application is controlled by the operator across differe
 
 It automatically generates a structured directory tree (Study > Process > Test) where each output is stored within a hierarchy that directly links it back to the specific configuration that produced it. This provides a permanent, auditable record of every production run.
 
-## Getting Started
+### Getting Started
 
 ➡️ [Get started with nuRemics](https://nuremics.github.io/getting-started)
