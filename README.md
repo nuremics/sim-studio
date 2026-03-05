@@ -10,6 +10,7 @@
 </p>
 
 **nuRemics: An open-source Python framework for building software-grade scientific tools.**
+
 🔬 Scientific agility — engineering rigor.<br>
 🧩 Modular by design — no more siloed tools.<br>
 📊 Parametric exploration — iterate without limits.<br>
