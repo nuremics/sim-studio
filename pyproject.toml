@@ -1,5 +1,5 @@
 [project]
-name = "nuremics-studio" 
+name = "sim-studio" 
 version = "1.0.0"
 description = "Graphical front-end of the nuRemics framework."
 authors = [
@@ -12,12 +12,12 @@ license-files = [
   "LICENSE_TRADEMARK",
 ]
 dependencies = [
-  "nuremics-labs @ git+https://github.com/nuremics/nuremics-labs.git@main"
+#  "sim-labs @ git+https://github.com/nuremics/sim-labs.git@main"
 ]
 
 [project.urls]
 homepage = "https://nuremics.github.io"
-repository = "https://github.com/nuremics/nuremics-studio"
+repository = "https://github.com/nuremics/sim-studio"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]

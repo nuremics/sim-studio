@@ -157,6 +157,10 @@ def _(dict_settings, get_state_sc, is_valid_working_dir, working_dir_wgt):
 
     working_path = Path(working_dir_wgt.value) / app_name
 
+    utils.load_local_server(
+        working_path=working_path,
+    )
+
     try:
         main(stage="config")
     except SystemExit:

@@ -1,8 +1,11 @@
 import base64
 import importlib
-import importlib.util
 import json
 import os
+import http.server
+import socketserver
+import threading
+from functools import partial
 from importlib.resources import files
 from pathlib import Path
 from types import ModuleType
@@ -63,14 +66,24 @@ def get_app_features(
     return app_features
 
 
+def load_local_server(
+    working_path: Path,
+) -> None:
+    
+    PORT = 8000
+    handler = partial(http.server.SimpleHTTPRequestHandler, directory=str(working_path))
+    httpd = socketserver.TCPServer(("", PORT), handler)
+    thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    thread.start()
+
+
 def load_module(
     module_path: str
 ) -> ModuleType:
-    
-    spec = importlib.util.find_spec(module_path)
-    if spec is not None:
+
+    try:
         module = importlib.import_module(module_path)
-    else:
+    except ModuleNotFoundError:
         module = None
 
     return module

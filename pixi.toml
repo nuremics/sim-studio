@@ -12,8 +12,8 @@ rclone = ">=1.72.1,<2"
 ruff = ">=0.12.7,<0.16"
 
 [pypi-dependencies]
-nuremics-studio  = { path = ".", editable = true }
-# nuremics-labs = { path = "../nuremics-labs", editable = true }
+sim-studio = { path = ".", editable = true }
+sim-labs = { path = "../sim-labs", editable = true }
 
 [tasks]
 ruff-check = "ruff check"
@@ -30,5 +30,19 @@ openpyxl = ">=3.1.5,<4"
 DEMO_APP = "NUREMICS_APP=DEMO_APP marimo run src/nuremics_studio/nuRemics_App.py"
 DEMO_APP-edit = "NUREMICS_APP=DEMO_APP marimo edit src/nuremics_studio/nuRemics_App.py"
 
+[feature.CANTILEVER_SHEAR_APP.dependencies]
+vtk = "=9.3.1"
+trame-vtk = "<2.10.3"
+pythonocc-core = ">=7.4.0,<8"
+
+[feature.CANTILEVER_SHEAR_APP.pypi-dependencies]
+pyvista = { version = "==0.46.5", extras = ["jupyter"] }
+
+[feature.CANTILEVER_SHEAR_APP.tasks]
+CANTILEVER_SHEAR_APP = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
+CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+run-test = "python test.py"
+
 [environments]
 demo = ["DEMO_APP"]
+cantilever-shear = ["CANTILEVER_SHEAR_APP"]

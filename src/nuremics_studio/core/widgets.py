@@ -1,3 +1,7 @@
+# import http.server
+# import socketserver
+# import threading
+# from functools import partial
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -842,10 +846,18 @@ def results(
         )
     else:
         func = None
-    
+
+    # PORT = 8000
+    # handler = partial(http.server.SimpleHTTPRequestHandler, directory=str(working_path))
+    # httpd = socketserver.TCPServer(("", PORT), handler)
+    # thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    # thread.start()
+
     if func is not None:
 
-        dict_results_builder = func()
+        dict_results_builder = func(
+            working_path=working_path,
+        )
         dict_studies_results = {}
         for study in list_studies:
 
