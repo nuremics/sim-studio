@@ -22,9 +22,9 @@ apps:
     # color: "#101a30"
     import: nuremics_labs.apps.simulation.CANTILEVER_SHEAR_APP
     visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/CANTILEVER_SHEAR_APP.png
-    app_link: https://nuremics.github.io/labs/apps/simulation/CANTILEVER_SHEAR_APP/app
+    app_link: https://github.com/nuremics/sim-labs/tree/cantilever-shear/src/nuremics_labs/apps/simulation/CANTILEVER_SHEAR_APP
     use_case_link: https://nuremics.github.io/use-cases/simulation/cantilever-shear/description
-    use_case_title: Cantilever subjected to end shear force
+    use_case_title: Cantilever subjected to end shear force (WORK IN PROGRESS)
     use_case_description: >
       Computational solid mechanics benchmark focusing on
       the non-linear response of a shear-loaded beam structure.

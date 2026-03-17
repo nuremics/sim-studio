@@ -1,9 +1,11 @@
 import os
 import json
+import re
 import shutil
 from pathlib import Path
 
 import marimo as mo
+import pyvista as pv
 from OCC.Core.BRep import BRep_Builder
 from OCC.Core.BRepTools import breptools
 from OCC.Core.TopoDS import TopoDS_Shape
@@ -15,6 +17,58 @@ from OCC.Core.TopAbs import TopAbs_EDGE
 from OCC.Core.TopAbs import TopAbs_VERTEX
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Display.WebGl import x3dom_renderer
+
+
+def settings(
+    working_path: Path,
+    list_paths: list,
+    set_state: mo.state,
+) -> tuple[dict, dict]:
+    
+    widget_paths = {}
+    dict_widget_paths = {}
+    for path in list_paths:
+
+        if path == "mesh_settings.json":
+
+            file_path = working_path / path
+            if file_path.exists():
+                with open(file_path) as f:
+                    dict_mesh_settings = json.load(f)
+            else:
+                dict_mesh_settings = {
+                    "elem": "hexa",
+                    "nb_elem_length": 16,
+                    "nb_elem_width": 1,
+                    "nb_elem_height": 1,
+                }
+                with open(file_path, "w") as f:
+                    json.dump(dict_mesh_settings, f, indent=4)
+            
+            list_widget = []
+            dict_widget_paths[path] = {}
+            for key, value in dict_mesh_settings.items():
+
+                if type(value) == str:
+                    w = mo.ui.text(
+                        label=f"{key}:",
+                        value=value,
+                        on_change=set_state,
+                    )
+                else:
+                    w = mo.ui.number(
+                        label=f"{key}:",
+                        step=1,
+                        value=value,
+                        on_change=set_state,
+                    )
+                list_widget.append(w)
+                dict_widget_paths[path][key] = w
+            
+            widget = mo.vstack(list_widget)
+            widget_paths[path] = widget
+    
+    return widget_paths, dict_widget_paths
 
 
 def results(
@@ -55,6 +109,14 @@ def results(
             dst=html_path,
             dirs_exist_ok=True,
         )
+        html_file = html_path / "index.html"
+        html_file.write_text(
+            data=re.sub(
+                pattern=r"background\s*:\s*linear-gradient\([^)]+\)",
+                repl="background: white",
+                string=html_file.read_text(),
+            )
+        )
 
         # import pyvista as pv
         # mesh = pv.Sphere() 
@@ -64,9 +126,8 @@ def results(
         #     filename=full_working_path / "sphere.html",
         # )
 
-        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/sphere.html" width="100%" height="600"></iframe>')
-        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="600"></iframe>')
-        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/cantilever-shear/results/{relative_path}/html/index.html" width="100%" height="600"></iframe>')
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/cantilever-shear/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -80,9 +141,10 @@ def results(
         full_working_path = Path(os.path.split(value)[0])
         relative_path = full_working_path.relative_to(working_path)
 
-        for label in ["Constraint"]:
+        tabs = {}
+        for label in ["Constraint", "Load"]:
 
-            label_dir = full_working_path / "Constraint"
+            label_dir = full_working_path / label
             label_dir.mkdir(
                 exist_ok=True,
                 parents=True,
@@ -141,14 +203,51 @@ def results(
                 dst=html_path,
                 dirs_exist_ok=True,
             )
+            html_file = html_path / "index.html"
+            html_file.write_text(
+                data=re.sub(
+                    pattern=r"background\s*:\s*linear-gradient\([^)]+\)",
+                    repl="background: white",
+                    string=html_file.read_text(),
+                )
+            )
 
-            result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label}/html/index.html" width="100%" height="600"></iframe>')
+            tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label}/html/index.html" width="100%" height="500"></iframe>')
+            # tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/cantilever-shear/results/{relative_path}/{label}/html/index.html" width="100%" height="500"></iframe>')
+
+        result = mo.ui.tabs(tabs)
+
+        return result
+
+    def _mesh_result(
+        value: str,
+    ) -> mo.Html:
         
+        full_working_path = Path(os.path.split(value)[0])
+        relative_path = full_working_path.relative_to(working_path)
+        
+        mesh = pv.read(value) 
+        plotter = pv.Plotter()
+        plotter.add_mesh(
+            mesh=mesh,
+            color="#4cace6",
+            show_edges=True,
+            edge_color="black",
+            specular=0.5,
+        )
+        plotter.export_html(
+            filename=full_working_path / "mesh.html",
+        )
+
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/cantilever-shear/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+
         return result
 
     dict_results_builder = {
         "geometry.brep": _geometry_result,
         "labels.json": _labeling_result,
+        "mesh.msh": _mesh_result,
     }
 
     return dict_results_builder
