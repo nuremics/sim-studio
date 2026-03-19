@@ -12,7 +12,7 @@ def studies_settings(
         
         if path == "mesh_settings.json":
 
-            dict_mesh_settings = {
+            dict_inputs = {
                 "elem": widget["elem"].value,
                 "nb_elem_length": widget["nb_elem_length"].value,
                 "nb_elem_width": widget["nb_elem_width"].value,
@@ -20,7 +20,21 @@ def studies_settings(
             }
             file_path = working_path / path
             with open(file_path, "w") as f:
-                json.dump(dict_mesh_settings, f, indent=4)
+                json.dump(dict_inputs, f, indent=4)
+            
+            list_paths.append(path)
+
+        if path == "solver_settings.json":
+
+            dict_inputs = {
+                "dt": widget["dt"].value,
+                "ramp": widget["ramp"].value,
+                "scheme": widget["scheme"].value,
+                "solver": widget["solver"].value,
+            }
+            file_path = working_path / path
+            with open(file_path, "w") as f:
+                json.dump(dict_inputs, f, indent=4)
             
             list_paths.append(path)
     
