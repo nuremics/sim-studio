@@ -1,8 +1,8 @@
 import base64
+import http.server
 import importlib
 import json
 import os
-import http.server
 import socketserver
 import threading
 from functools import partial
