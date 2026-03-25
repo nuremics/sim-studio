@@ -36,7 +36,6 @@ vtk = "=9.6.0"
 openpyxl = ">=3.1.5,<4"
 sofa-app = "=25.6.0"
 sofa-python3 = "=25.6.0"
-sofa-beamadapter = "=25.6.0"
 
 [feature.CANTILEVER_SHEAR_APP.pypi-dependencies]
 gmsh = ">=4.15.0,<5"
@@ -49,7 +48,6 @@ moviepy = ">=1.0.3,<3"
 [feature.CANTILEVER_SHEAR_APP.tasks]
 CANTILEVER_SHEAR_APP = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
 CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo edit src/nuremics_studio/nuRemics_App.py"
-run-test = "python test.py"
 
 [environments]
 demo = ["DEMO_APP"]

@@ -24,11 +24,22 @@ def studies_settings(
             
             list_paths.append(path)
 
+        if path == "time_settings.json":
+
+            dict_inputs = {
+                "ramp": widget["ramp"].value,
+                "final_time": widget["final_time"].value,
+            }
+            file_path = working_path / path
+            with open(file_path, "w") as f:
+                json.dump(dict_inputs, f, indent=4)
+            
+            list_paths.append(path)
+
         if path == "solver_settings.json":
 
             dict_inputs = {
                 "dt": widget["dt"].value,
-                "ramp": widget["ramp"].value,
                 "scheme": widget["scheme"].value,
                 "solver": widget["solver"].value,
             }

@@ -3,13 +3,14 @@ common:
   color: "#0080ff6f"
 
 apps:
+
   DEMO_APP:
     # logo: logo.png
     # color: "#101a30"
     import: nuremics_labs.apps.general.DEMO_APP
     visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/DEMO_APP.png
     app_link: https://nuremics.github.io/labs/apps/general/DEMO_APP
-    use_case_link: https://nuremics.github.io/use-cases/general/demo
+    use_case_link: https://nuremics.github.io/use-cases/general/demo/description
     use_case_title: Projectile motion under gravity
     use_case_description: >
       Solid mechanics simulation of projectile kinematics launched
@@ -17,14 +18,15 @@ apps:
     config: >
       rclone copy :http: ./DEMO_APP
       --http-url https://splinecloud.com/api/repositories/rpo_F5RXF9z7AcHH/mirror/
+
   CANTILEVER_SHEAR_APP:
     # logo: logo.png
     # color: "#101a30"
     import: nuremics_labs.apps.simulation.CANTILEVER_SHEAR_APP
     visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/CANTILEVER_SHEAR_APP.png
-    app_link: https://github.com/nuremics/sim-labs/tree/cantilever-shear/src/nuremics_labs/apps/simulation/CANTILEVER_SHEAR_APP
+    app_link: https://github.com/nuremics/sim-labs/tree/main/src/nuremics_labs/apps/simulation/CANTILEVER_SHEAR_APP
     use_case_link: https://nuremics.github.io/use-cases/simulation/cantilever-shear/description
-    use_case_title: Cantilever subjected to end shear force (WORK IN PROGRESS)
+    use_case_title: Cantilever subjected to end shear force
     use_case_description: >
       Computational solid mechanics benchmark focusing on
       the non-linear response of a shear-loaded beam structure.

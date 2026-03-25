@@ -1,7 +1,3 @@
-# import http.server
-# import socketserver
-# import threading
-# from functools import partial
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -397,7 +393,7 @@ def datasets(
     set_state: mo.state,
 ) -> Tuple[Optional[mo.ui.data_editor], dict[str, Optional[mo.ui.data_editor]]]:
     
-    df_datasets = pd.DataFrame()
+    cols = {}
     for study in list_studies:
         df_inputs = utils.get_inputs_csv(
             app=app,
@@ -405,9 +401,11 @@ def datasets(
             study=study,
         )
         if df_inputs is not None:
-            df_datasets[study] = df_inputs["ID"].astype(str)
-
+            cols[study] = df_inputs["ID"].astype(str)
+    
+    df_datasets = pd.DataFrame(cols)
     df_datasets = df_datasets.fillna("")
+    
     if df_datasets.shape[1] != 0:
         widget = mo.ui.data_editor(
             data=df_datasets,
@@ -847,12 +845,6 @@ def results(
     else:
         func = None
 
-    # PORT = 8000
-    # handler = partial(http.server.SimpleHTTPRequestHandler, directory=str(working_path))
-    # httpd = socketserver.TCPServer(("", PORT), handler)
-    # thread = threading.Thread(target=httpd.serve_forever, daemon=True)
-    # thread.start()
-
     if func is not None:
 
         dict_results_builder = func(
@@ -877,7 +869,10 @@ def results(
                     all_results = mo.accordion(result)
 
                 else:
-                    all_results = builder(dict_paths[result_key])
+                    if builder(dict_paths[result_key]) is not None: 
+                        all_results = builder(dict_paths[result_key])
+                    else:
+                        continue
 
                 dict_results[result_key] = all_results
             dict_studies_results[study] = mo.ui.tabs(dict_results)
