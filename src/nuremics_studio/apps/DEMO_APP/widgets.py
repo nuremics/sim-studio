@@ -123,7 +123,7 @@ def settings(
     return widget_paths, dict_widget_paths
 
 
-def results(**kwargs) -> dict:
+def results(**kwargs: object) -> dict:
 
     def _image_result(
         value: str,
