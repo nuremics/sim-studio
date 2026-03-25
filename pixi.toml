@@ -13,7 +13,7 @@ ruff = ">=0.12.7,<0.16"
 
 [pypi-dependencies]
 sim-studio = { path = ".", editable = true }
-sim-labs = { path = "../sim-labs", editable = true }
+# sim-labs = { path = "../sim-labs", editable = true }
 
 [tasks]
 ruff-check = "ruff check"

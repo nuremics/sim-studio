@@ -12,7 +12,7 @@ license-files = [
   "LICENSE_TRADEMARK",
 ]
 dependencies = [
-#  "sim-labs @ git+https://github.com/nuremics/sim-labs.git@main"
+  "sim-labs @ git+https://github.com/nuremics/sim-labs.git@main"
 ]
 
 [project.urls]
