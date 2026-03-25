@@ -1,17 +1,16 @@
-import os
 import json
+import os
 import re
 import shutil
 from pathlib import Path
 
 import marimo as mo
-import pyvista as pv
 import pandas as pd
+import pyvista as pv
 from OCC.Core.BRep import BRep_Builder
 from OCC.Core.BRepTools import breptools
-from OCC.Core.TopoDS import TopoDS_Shape
-from OCC.Core.TopoDS import topods
 from OCC.Core.TopAbs import TopAbs_WIRE
+from OCC.Core.TopoDS import TopoDS_Shape, topods
 from OCC.Display.WebGl import x3dom_renderer
 
 
@@ -45,7 +44,7 @@ def settings(
             dict_widget_paths[path] = {}
             for key, value in dict_inputs.items():
 
-                if type(value) == str:
+                if isinstance(value, str):
                     w = mo.ui.dropdown(
                         options=["hexa", "tetra"],
                         label=f"{key}:",
@@ -112,7 +111,7 @@ def settings(
             dict_widget_paths[path] = {}
             for key, value in dict_inputs.items():
 
-                if type(value) == str:
+                if isinstance(value, str):
                     w = mo.ui.text(
                         label=f"{key}:",
                         value=value,
@@ -216,7 +215,7 @@ def results(
         full_working_path = Path(os.path.split(value)[0])
         relative_path = full_working_path.relative_to(working_path)
 
-        mesh:pv.UnstructuredGrid = pv.read(value)
+        mesh: pv.UnstructuredGrid = pv.read(value)
 
         tabs = {}
         for label in ["Constraint", "Load"]:
@@ -262,7 +261,7 @@ def results(
         
         reader = pv.get_reader(os.path.join(value, "solution.pvd"))
         times = reader.time_values
-        reader.set_active_time_point(len(times)-1)
+        reader.set_active_time_point(len(times) - 1)
         mesh: pv.UnstructuredGrid = reader.read()[0]
 
         plotter = pv.Plotter()
