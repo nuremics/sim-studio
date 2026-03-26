@@ -272,6 +272,7 @@ def results(
         )
         plotter.add_mesh(
             mesh=mesh,
+            specular=0.3,
             cmap="viridis",
             clim=[0.0, 6.698],
             scalars=mesh.point_data["Displacement"][:, 2],

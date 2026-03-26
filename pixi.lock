@@ -391,7 +391,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/b7/de/f7192e12b21b9e9a68a6d0f249b4af3fdcdff8418be0767a627564afa1f1/rpds_py-0.30.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a3/bb/bbae36d06c0fd670e8373da67096cd57058b57c9bad7d92969b5e3b730af/scooby-0.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1c/78/504fdd027da3b84ff1aecd9f6957e65f35134534ccc6da8628eb71e76d3f/send2trash-2.1.0-py3-none-any.whl
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/9e/65/be223a02df814a3dbd84d8a0c446d21d4860a4f23ec4d81aabea34e7e994/simpervisor-1.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl
@@ -722,7 +722,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/03/e7/98a2f4ac921d82f33e03f3835f5bf3a4a40aa1bfdc57975e74a97b2b4bdd/rpds_py-0.30.0-cp312-cp312-macosx_10_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a3/bb/bbae36d06c0fd670e8373da67096cd57058b57c9bad7d92969b5e3b730af/scooby-0.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1c/78/504fdd027da3b84ff1aecd9f6957e65f35134534ccc6da8628eb71e76d3f/send2trash-2.1.0-py3-none-any.whl
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/9e/65/be223a02df814a3dbd84d8a0c446d21d4860a4f23ec4d81aabea34e7e994/simpervisor-1.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl
@@ -1053,7 +1053,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/fd/32/55fb50ae104061dbc564ef15cc43c013dc4a9f4527a1f4d99baddf56fe5f/rpds_py-0.30.0-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/a3/bb/bbae36d06c0fd670e8373da67096cd57058b57c9bad7d92969b5e3b730af/scooby-0.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1c/78/504fdd027da3b84ff1aecd9f6957e65f35134534ccc6da8628eb71e76d3f/send2trash-2.1.0-py3-none-any.whl
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/9e/65/be223a02df814a3dbd84d8a0c446d21d4860a4f23ec4d81aabea34e7e994/simpervisor-1.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl
@@ -1359,7 +1359,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f2/e1/485132437d20aa4d3e1d8b3fb5a5e65aa8139f1e097080c2a8443201742c/rpds_py-0.30.0-cp313-cp313-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/a3/bb/bbae36d06c0fd670e8373da67096cd57058b57c9bad7d92969b5e3b730af/scooby-0.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1c/78/504fdd027da3b84ff1aecd9f6957e65f35134534ccc6da8628eb71e76d3f/send2trash-2.1.0-py3-none-any.whl
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/9e/65/be223a02df814a3dbd84d8a0c446d21d4860a4f23ec4d81aabea34e7e994/simpervisor-1.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl
@@ -1457,7 +1457,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       osx-64:
@@ -1523,7 +1523,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-h3eecb57_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       osx-arm64:
@@ -1590,7 +1590,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       win-64:
@@ -1661,7 +1661,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
   demo:
@@ -1875,7 +1875,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       osx-64:
@@ -2021,7 +2021,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-h3eecb57_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       osx-arm64:
@@ -2167,7 +2167,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
       win-64:
@@ -2321,7 +2321,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl
       - pypi: git+https://github.com/nuremics/nuremics.git#2fc0b7d45194690f8f8f6f0fc17aec931881e4ab
-      - pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+      - pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: ./
 packages:
@@ -15533,7 +15533,7 @@ packages:
   purls: []
   size: 1558909
   timestamp: 1770208850155
-- pypi: git+https://github.com/nuremics/sim-labs.git#074faf06c1c61a0aa06f310df8bad7aa11056983
+- pypi: git+https://github.com/nuremics/sim-labs.git#ec9d97983fcd56820d2ac2535c3c89ce2292b1a3
   name: sim-labs
   version: 1.0.0
   requires_dist:
