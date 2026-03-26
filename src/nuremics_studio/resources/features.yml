@@ -1,15 +1,24 @@
 common:
   logo: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/logo.png
   color: "#0080ff6f"
+  dependencies:
+    - "https://img.shields.io/badge/Python-3.9+-ffcd3b?style=flat&logo=python&logoColor=white"
+    - "https://img.shields.io/badge/nuRemics-1.0.0+-007bff"
+    - "https://img.shields.io/badge/marimo-0.14.17+-1c6f60"
 
 apps:
-
   DEMO_APP:
     # logo: logo.png
     # color: "#101a30"
+    dependencies:
+      - "https://img.shields.io/badge/NumPy-2.4.2+-4dabcf?style=flat&logo=numpy&logoColor=white"
+      - "https://img.shields.io/badge/Pandas-2.1.1+-0b0153?style=flat&logo=pandas&logoColor=white"
+      - "https://img.shields.io/badge/pygame-2.6.1+-08df1c"
+      - "https://img.shields.io/badge/pymunk-7.0.1+-3398da"
+      - "https://img.shields.io/badge/matplotlib-3.9.4+-11557c"
     import: nuremics_labs.apps.general.DEMO_APP
     visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/DEMO_APP.png
-    app_link: https://nuremics.github.io/labs/apps/general/DEMO_APP
+    app_link: https://github.com/nuremics/nuremics-labs/tree/main/src/nuremics_labs/apps/general/DEMO_APP
     use_case_link: https://nuremics.github.io/use-cases/general/demo/description
     use_case_title: Projectile motion under gravity
     use_case_description: >
@@ -22,6 +31,16 @@ apps:
   CANTILEVER_SHEAR_APP:
     # logo: logo.png
     # color: "#101a30"
+    dependencies:
+      - "https://img.shields.io/badge/NumPy-2.4.2+-4dabcf?style=flat&logo=numpy&logoColor=white"
+      - "https://img.shields.io/badge/Pandas-2.1.1+-0b0153?style=flat&logo=pandas&logoColor=white"
+      - "https://img.shields.io/badge/pythonocc--core-7.4.0+-f7941e"
+      - "https://img.shields.io/badge/Gmsh-4.15.0+-ffffff"
+      - "https://img.shields.io/badge/meshio-5.3.5+-81ecec"
+      - "https://img.shields.io/badge/VTK-9.6.0-064f8d"
+      - "https://img.shields.io/badge/PyVista-0.47.1-00b25e"
+      - "https://img.shields.io/badge/SOFA Framework-25.6.0-e84e1c"
+      - "https://img.shields.io/badge/matplotlib-3.9.4+-11557c"
     import: nuremics_labs.apps.simulation.CANTILEVER_SHEAR_APP
     visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/CANTILEVER_SHEAR_APP.png
     app_link: https://github.com/nuremics/sim-labs/tree/main/src/nuremics_labs/apps/simulation/CANTILEVER_SHEAR_APP

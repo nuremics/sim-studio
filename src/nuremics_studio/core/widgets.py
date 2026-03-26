@@ -14,96 +14,60 @@ def app_banner(
     app_color: str,
     app_link: str,
 ) -> mo.Html:
-    
+
     if app_link is not None:
-
-        widget = mo.Html(f"""
-            <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
-
-            <style>
-            .jost-banner-link {{
-                text-decoration: none;
-                display: block;
-            }}
-
-            .jost-banner {{
-                display: flex;
-                align-items: center;
-                gap: 14px;
-
-                font-family: 'Jost', sans-serif;
-                color: white;
-                font-size: 30px;
-                font-weight: 600;
-
-                background-color: {app_color};
-                padding: 14px 20px;
-                border-radius: 10px;
-
-                box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
-
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-            }}
-
-            .jost-banner:hover {{
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-            }}
-
-            .jost-banner img {{
-                height: 50px;
-            }}
-            </style>
-
-            <a href="{app_link}" target="_blank" class="jost-banner-link">
-                <div class="jost-banner">
-                    <img src="{app_logo}">
-                    <div>
-                        <strong> {app_name} </strong>
-                    </div>
-                </div>
-            </a>
-        """)
-    
+        wrapper_start = f'<a href="{app_link}" target="_blank" class="jost-banner-link">'
+        wrapper_end = "</a>"
+        banner_hover = ".jost-banner:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); }"
     else:
+        wrapper_start = ""
+        wrapper_end = ""
+        banner_hover = ""
 
-        widget = mo.Html(f"""
-            <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+    widget = mo.Html(f"""
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
 
-            <style>
-            .jost-banner-link {{
-                text-decoration: none;
-                display: block;
-            }}
+        <style>
+        .jost-banner-link {{
+            text-decoration: none;
+            display: block;
+        }}
 
-            .jost-banner {{
-                display: flex;
-                align-items: center;
-                gap: 14px;
+        .jost-banner {{
+            display: flex;
+            align-items: center;
+            gap: 14px;
 
-                font-family: 'Jost', sans-serif;
-                color: white;
-                font-size: 30px;
-                font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            color: white;
+            font-size: 30px;
+            font-weight: 600;
 
-                background-color: {app_color};
-                padding: 14px 20px;
-                border-radius: 10px;
+            background-color: {app_color};
+            padding: 14px 20px;
+            border-radius: 10px;
 
-                box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
-            }}
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
 
-            .jost-banner img {{
-                height: 50px;
-            }}
-            </style>
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }}
 
-            <div class="jost-banner">
-                <img src="{app_logo}">
-                <div>
-                    <strong> {app_name} </strong>
-                </div>
+        {banner_hover}
+
+        .jost-banner img {{
+            height: 50px;
+        }}
+        </style>
+
+        {wrapper_start}
+        <div class="jost-banner">
+            <img src="{app_logo}">
+            <div>
+                <strong> {app_name} </strong>
             </div>
-        """)
+        </div>
+        {wrapper_end}
+    """)
 
     return widget
 
@@ -114,7 +78,13 @@ def use_case(
     use_case_link: str,
     use_case_title: str,
     use_case_description: str,
+    dependencies: list,
 ) -> mo.Html:
+    
+    badge_imgs = []
+    for url in dependencies:
+        badge_imgs.append(f'<img src="{url}" />')
+    card_badges = '<p class="badges">\n    ' + "\n    ".join(badge_imgs) + '\n</p>'
     
     all_elements = True
     if (visual is None) or \
@@ -125,122 +95,85 @@ def use_case(
     if all_elements:
 
         if use_case_link is not None:
-
-            html = mo.Html(f"""
-                <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
-
-                <style>
-                .image-card-link {{
-                    text-decoration: none;
-                    display: inline-block;
-                }}
-
-                .image-card {{
-                    font-family: 'Jost', sans-serif;
-                    background-color: white;
-                    border-radius: 12px;
-                    padding: 16px;
-                    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
-
-                    transition: transform 0.2s ease, box-shadow 0.2s ease;
-                }}
-
-                .image-card:hover {{
-                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-                }}
-
-                .image-card-title {{
-                    color: {color};
-                    font-size: 18px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin-bottom: 0px;
-                }}
-                            
-                .image-card-description {{
-                    color: #7F7F7FFF;        
-                    font-size: 14px; 
-                    text-align: center;
-                    margin-bottom: 6px;
-                }}
-
-                .image-card img {{
-                    width: 100%;
-                    display: block;
-                    margin: 0 auto;
-                    border-radius: 8px;
-                    margin-bottom: 12px;
-                }}
-                
-                </style>
-
-                <a href="{use_case_link}" target="_blank" class="image-card-link">
-                    <div class="image-card">
-                        <div class="image-card-title">
-                            {use_case_title}
-                        </div>
-                        <div class="image-card-description">
-                            {use_case_description}
-                        </div>
-                        <img src="{visual}">
-                    </div>
-                </a>
-            """)
-    
+            wrapper_start = f'<a href="{use_case_link}" target="_blank" class="image-card-link">'
+            wrapper_end = "</a>"
+            image_card_hover = ".image-card:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); }"
         else:
+            wrapper_start = ""
+            wrapper_end = ""
+            image_card_hover = ""
 
-            html = mo.Html(f"""
-                <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+        html = mo.Html(f"""
+            <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
 
-                <style>
-                .image-card-link {{
-                    text-decoration: none;
-                    display: inline-block;
-                }}
+            <style>
+            .image-card-link {{
+                text-decoration: none;
+                display: inline-block;
+            }}
 
-                .image-card {{
-                    font-family: 'Jost', sans-serif;
-                    background-color: white;
-                    border-radius: 12px;
-                    padding: 16px;
-                    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
-                }}
+            .image-card {{
+                font-family: 'Jost', sans-serif;
+                background-color: white;
+                border-radius: 12px;
+                padding: 16px;
+                box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
 
-                .image-card-title {{
-                    color: {color};
-                    font-size: 18px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin-bottom: 0px;
-                }}
-                            
-                .image-card-description {{
-                    color: #00000092;        
-                    font-size: 14px; 
-                    text-align: center;
-                    margin-bottom: 6px;
-                }}
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }}
 
-                .image-card img {{
-                    width: 100%;
-                    display: block;
-                    margin: 0 auto;
-                    border-radius: 8px;
-                    margin-bottom: 12px;
-                }}
-                
-                </style>
+            {image_card_hover}
 
-                <div class="image-card">
-                    <div class="image-card-title">
-                        {use_case_title}
-                    </div>
-                    <div class="image-card-description">
-                        {use_case_description}
-                    </div>
-                    <img src="{visual}">
+            .image-card-title {{
+                color: {color};
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 0px;
+            }}
+                        
+            .image-card-description {{
+                color: #7F7F7FFF;        
+                font-size: 14px; 
+                text-align: center;
+                margin-bottom: 6px;
+            }}
+
+            .main-image {{
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+                border-radius: 8px;
+                margin-bottom: 12px;
+            }}
+
+            .badges {{
+                display: flex;
+                gap: 5px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }}
+
+            .badges img {{
+                height: 20px;
+                width: auto;
+            }}
+            
+            </style>
+
+            {wrapper_start}
+            <div class="image-card">
+                <div class="image-card-title">
+                    {use_case_title}
                 </div>
-            """)
+                <div class="image-card-description">
+                    {use_case_description}
+                </div>
+                <img src="{visual}" class="main-image">
+                {card_badges}
+            </div>
+            {wrapper_end}
+        """)
 
         widget = mo.vstack([
             mo.vstack(["      "]),

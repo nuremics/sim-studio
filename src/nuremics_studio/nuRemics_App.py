@@ -22,6 +22,7 @@ with app.setup(hide_code=True):
     )
     app_logo = app_features["logo"]
     app_color = app_features["color"]
+    app_deps = app_features["dependencies"]
     app_import = app_features["import"]
     app_visual = app_features["visual"]
     app_link = app_features["app_link"]
@@ -54,6 +55,7 @@ def _():
         use_case_link=use_case_link,
         use_case_title=use_case_title,
         use_case_description=use_case_description,
+        dependencies=app_deps,
     )
     use_case_wgt
     return

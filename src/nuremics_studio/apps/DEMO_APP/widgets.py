@@ -125,7 +125,7 @@ def settings(
 
 def results(**kwargs: object) -> dict:
 
-    def _image_result(
+    def _shape_result(
         value: str,
     ) -> mo.Html:
         
@@ -135,7 +135,7 @@ def results(**kwargs: object) -> dict:
         )
         return mo.vstack([mo.vstack([image], align="center")])
     
-    def _folder_result(
+    def _comparison_result(
         value: str,
     ) -> mo.ui.tabs:
         
@@ -150,10 +150,25 @@ def results(**kwargs: object) -> dict:
         )
         return tabs
 
+    def _overall_result(
+        value: str,
+    ) -> mo.Html:
+
+        if Path(value).exists():
+            image = mo.image(
+                src=value,
+                width=600,
+            )
+            result = mo.vstack([mo.vstack([image], align="center")])
+        else:
+            result = None
+        
+        return result
+
     dict_results_builder = {
-        "polygon_shape.png": _image_result,
-        "comparison": _folder_result,
-        "overall_comparisons.png": _image_result,
+        "polygon_shape.png": _shape_result,
+        "comparison": _comparison_result,
+        "overall_comparisons.png": _overall_result,
     }
 
     return dict_results_builder

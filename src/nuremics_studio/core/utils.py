@@ -43,6 +43,7 @@ def get_app_features(
     app_features = {
         "logo": None,
         "color": None,
+        "dependencies": None,
         "import": None,
         "visual": None,
         "app_link": None,
@@ -57,6 +58,10 @@ def get_app_features(
         app_features["logo"] = dict_features["common"]["logo"]
     if app_features["color"] is None:
         app_features["color"] = dict_features["common"]["color"]
+
+    common_deps = dict_features["common"]["dependencies"]
+    app_deps = app_features["dependencies"]
+    app_features["dependencies"] = common_deps + app_deps
     
     if os.path.split(app_features["logo"])[0] == "":
         app_features["logo"] = image_to_data_url(

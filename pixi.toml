@@ -42,8 +42,6 @@ gmsh = ">=4.15.0,<5"
 meshio = ">=5.3.5,<6"
 pyvista = { version = "==0.47.1", extras = ["jupyter"] }
 trame-vtk = "<2.10.3"
-imageio = ">=2.37.0,<3"
-moviepy = ">=1.0.3,<3"
 
 [feature.CANTILEVER_SHEAR_APP.tasks]
 CANTILEVER_SHEAR_APP = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
