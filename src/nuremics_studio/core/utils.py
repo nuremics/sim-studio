@@ -22,6 +22,8 @@ CONFIG_PATH = user_config_path(
 )
 SETTINGS_FILE: Path = CONFIG_PATH / "settings.json"
 
+_httpd_server = None
+
 
 def image_to_data_url(
     path: Union[str, os.PathLike],
@@ -75,11 +77,24 @@ def load_local_server(
     working_path: Path,
 ) -> None:
     
+    global _httpd_server
+    
     PORT = 8000
+
+    if _httpd_server is not None:
+        _httpd_server.shutdown()
+        _httpd_server.server_close()
+        _httpd_server = None
+
     handler = partial(http.server.SimpleHTTPRequestHandler, directory=str(working_path))
+
+    socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("", PORT), handler)
+
     thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     thread.start()
+
+    _httpd_server = httpd
 
 
 def load_module(
