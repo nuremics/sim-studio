@@ -4,35 +4,34 @@ __generated_with = "0.19.7"
 app = marimo.App(width="medium")
 
 with app.setup(hide_code=True):
-    import importlib
     import os
     import subprocess
     from pathlib import Path
 
     import marimo as mo
+    from nuremics_labs.system import main
 
     import nuremics_studio.core.update as upt
     import nuremics_studio.core.utils as utils
     import nuremics_studio.core.widgets as wgt
 
-    app_name = os.getenv("NUREMICS_APP")
+    app_id = os.getenv("NUREMICS_APP").split(".")
+    app_category = app_id[0]
+    app_name = app_id[1]
 
     app_features = utils.get_app_features(
+        app_category=app_category,
         app_name=app_name,
     )
     app_logo = app_features["logo"]
     app_color = app_features["color"]
     app_deps = app_features["dependencies"]
-    app_import = app_features["import"]
     app_visual = app_features["visual"]
     app_link = app_features["app_link"]
     use_case_link = app_features["use_case_link"]
     use_case_title = app_features["use_case_title"]
     use_case_description = app_features["use_case_description"]
     app_config = app_features["config"]
-
-    module = importlib.import_module(app_import)
-    main = getattr(module, "main")
 
 
 @app.cell(hide_code=True)
@@ -72,12 +71,16 @@ def _():
 
 @app.cell(hide_code=True)
 def _():
-    _, app, default_params = main(stage=None)
+    app = main(
+        app_id=app_id,
+        stage=None,
+    )
+    default_params = app.default_params
 
     dict_settings = utils.get_settings()
 
-    if dict_settings["apps"][app_name]["working_dir"] is not None:
-        working_dir = dict_settings["apps"][app_name]["working_dir"]
+    if dict_settings["apps"][app_category][app_name]["working_dir"] is not None:
+        working_dir = dict_settings["apps"][app_category][app_name]["working_dir"]
     else:
         if dict_settings["default_working_dir"] is not None:
             working_dir = dict_settings["default_working_dir"]
@@ -151,7 +154,7 @@ def _(dict_settings, get_state_sc, is_valid_working_dir, working_dir_wgt):
 
     _ = get_state_sc()
 
-    dict_settings["apps"][app_name]["working_dir"] = working_dir_wgt.value
+    dict_settings["apps"][app_category][app_name]["working_dir"] = working_dir_wgt.value
 
     utils.update_settings(
         dict_settings=dict_settings,
@@ -164,7 +167,10 @@ def _(dict_settings, get_state_sc, is_valid_working_dir, working_dir_wgt):
     )
 
     try:
-        main(stage="config")
+        main(
+            app_id=app_id,
+            stage="config",
+        )
     except SystemExit:
         pass
     return (working_path,)
@@ -202,7 +208,10 @@ def _(is_valid_list_studies, list_studies, working_path):
     )
 
     try:
-        main(stage="config")
+        main(
+            app_id=app_id,
+            stage="config",
+        )
     except SystemExit:
         pass
 
@@ -249,7 +258,10 @@ def _(
     )
 
     try:
-        _, app_configured, _ = main(stage="config")
+        app_configured = main(
+            app_id=app_id,
+            stage="config",
+        )
     except SystemExit:
         pass
     return (app_configured,)
@@ -330,7 +342,10 @@ def _(get_state_datasets, is_valid_list_studies):
     _ = get_state_datasets()
 
     try:
-        main(stage="settings")
+        main(
+            app_id=app_id,
+            stage="settings",
+        )
     except SystemExit:
         pass
     return
@@ -394,7 +409,10 @@ def _(get_state_datasets, get_state_settings, is_valid_list_studies):
     kind = None
 
     try:
-        main(stage="settings")
+        main(
+            app_id=app_id,
+            stage="settings",
+        )
         kind = "success"
     except SystemExit:
         kind = "danger"
@@ -428,7 +446,10 @@ def _(run_button):
     success = None
 
     try:
-        main(stage="run")
+        main(
+            app_id=app_id,
+            stage="run",
+        )
         message = mo.vstack(
             [mo.md("<span style='color: green; font-size: 3.5em;'>✔</span>")],
             align="center",

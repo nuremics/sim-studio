@@ -35,6 +35,7 @@ def image_to_data_url(
 
 
 def get_app_features(
+    app_category: str,
     app_name: str,
 ) -> dict[str, None]:
 
@@ -46,7 +47,6 @@ def get_app_features(
         "logo": None,
         "color": None,
         "dependencies": None,
-        "import": None,
         "visual": None,
         "app_link": None,
         "use_case_link": None,
@@ -54,7 +54,7 @@ def get_app_features(
         "use_case_description": None,
         "config": None,
     }
-    app_features.update(dict_features["apps"][app_name])
+    app_features.update(dict_features["apps"][app_category][app_name])
 
     if app_features["logo"] is None:
         app_features["logo"] = dict_features["common"]["logo"]

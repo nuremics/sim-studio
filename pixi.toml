@@ -27,8 +27,8 @@ xlsxwriter = ">=3.2.3,<4"
 openpyxl = ">=3.1.5,<4"
 
 [feature.DEMO_APP.tasks]
-DEMO_APP = "NUREMICS_APP=DEMO_APP marimo run src/nuremics_studio/nuRemics_App.py"
-DEMO_APP-edit = "NUREMICS_APP=DEMO_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+DEMO_APP = "NUREMICS_APP=general.DEMO_APP marimo run src/nuremics_studio/nuRemics_App.py"
+DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [feature.CANTILEVER_SHEAR_APP.dependencies]
 pythonocc-core = ">=7.4.0,<8"
@@ -44,8 +44,8 @@ pyvista = { version = "==0.47.1", extras = ["jupyter"] }
 trame-vtk = "<2.10.3"
 
 [feature.CANTILEVER_SHEAR_APP.tasks]
-CANTILEVER_SHEAR_APP = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
-CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=CANTILEVER_SHEAR_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+CANTILEVER_SHEAR_APP = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
+CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [environments]
 demo = ["DEMO_APP"]
