@@ -360,7 +360,9 @@ def settings(
     set_state: mo.state,
 ) -> tuple[mo.ui.tabs, dict]:
     
-    module_path = f"nuremics_studio.apps.{app.workflow.app_name}.widgets"
+    app_category = app.workflow.app_category
+    app_name = app.workflow.app_name
+    module_path = f"nuremics_studio.apps.{app_category}.{app_name}.widgets"
     module = utils.load_module(
         module_path=module_path,
     )
@@ -766,7 +768,9 @@ def results(
     list_studies: list,
 ) -> Optional[mo.ui.tabs]:
     
-    module_path = f"nuremics_studio.apps.{app.workflow.app_name}.widgets"
+    app_category = app.workflow.app_category
+    app_name = app.workflow.app_name
+    module_path = f"nuremics_studio.apps.{app_category}.{app_name}.widgets"
     module = utils.load_module(
         module_path=module_path,
     )

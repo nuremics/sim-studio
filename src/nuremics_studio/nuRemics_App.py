@@ -24,7 +24,7 @@ with app.setup(hide_code=True):
         app_name=app_name,
     )
     app_logo = app_features["logo"]
-    app_color = app_features["color"]
+    app_color = "#" + app_features["color"]
     app_deps = app_features["dependencies"]
     app_visual = app_features["visual"]
     app_link = app_features["app_link"]

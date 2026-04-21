@@ -60,7 +60,9 @@ def studies_settings(
     working_path: Path,
 ) -> None:
     
-    module_path = f"nuremics_studio.apps.{app.workflow.app_name}.update"
+    app_category = app.workflow.app_category
+    app_name = app.workflow.app_name
+    module_path = f"nuremics_studio.apps.{app_category}.{app_name}.update"
     module = utils.load_module(
         module_path=module_path,
     )
