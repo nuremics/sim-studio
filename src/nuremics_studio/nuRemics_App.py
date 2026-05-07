@@ -218,16 +218,17 @@ def _(is_valid_list_studies, list_studies, working_path):
     dict_studies_to_config = utils.get_studies(
         working_path=working_path,
     )
-    return (dict_studies_to_config,)
+    return app_config, dict_studies_to_config
 
 
 @app.cell(hide_code=True)
-def _(dict_studies_to_config, is_valid_list_studies):
+def _(app, dict_studies_to_config, is_valid_list_studies):
     mo.stop(not is_valid_list_studies)
 
     get_state_config, set_state_config = mo.state(0)
 
     config_wgt, dict_config_wgt = wgt.config(
+        app=app,
         dict_studies=dict_studies_to_config,
         set_state=set_state_config,
     )

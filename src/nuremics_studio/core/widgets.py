@@ -254,6 +254,7 @@ def studies(
 
 
 def config(
+    app: Application,
     dict_studies: dict,
     set_state: mo.state,
 ) -> tuple[mo.ui.tabs, dict]:
@@ -273,7 +274,9 @@ def config(
         list_wgt.append(mo.vstack([execute_wgt]))
         dict_widget[key]["execute"] = execute_wgt
 
-        list_wgt.append(mo.md("**INPUT PARAMETERS**"))
+        # Parameters
+        if app.workflow.user_params:
+            list_wgt.append(mo.md("**INPUT PARAMETERS**"))
 
         dict_user_params_wgt = {}
         for k, v in value["user_params"].items():
@@ -291,7 +294,9 @@ def config(
 
         dict_widget[key]["user_params"] = dict_user_params_wgt
 
-        list_wgt.append(mo.md("**INPUT PATHS**"))
+        # Paths
+        if app.workflow.user_paths:
+            list_wgt.append(mo.md("**INPUT PATHS**"))
 
         dict_user_paths_wgt = {}
         for k, v in value["user_paths"].items():
