@@ -198,7 +198,7 @@ def results(
             color="#4cace6",
             show_edges=True,
             edge_color="black",
-            specular=0.5,
+            lighting=False,
         )
         plotter.export_html(
             filename=full_working_path / "mesh.html",
@@ -257,6 +257,15 @@ def results(
         full_working_path = Path(os.path.split(value)[0])
         relative_path = full_working_path.relative_to(working_path)
 
+        tabs = {}
+
+        tabs["Animation"] = mo.video(
+            src=os.path.join(value, "animation.mp4"),
+            controls=True,
+            autoplay=True,
+            loop=True,
+        )
+
         mesh0 = pv.read(os.path.join(value, "dump", "solution0.vtu"))
         
         reader = pv.get_reader(os.path.join(value, "solution.pvd"))
@@ -272,7 +281,7 @@ def results(
         )
         plotter.add_mesh(
             mesh=mesh,
-            specular=0.3,
+            lighting=False,
             cmap="viridis",
             clim=[0.0, 6.698],
             scalars=mesh.point_data["Displacement"][:, 2],
@@ -285,7 +294,9 @@ def results(
             filename=full_working_path / "solution.html",
         )
 
-        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+
+        result = mo.ui.tabs(tabs)
 
         return result
 

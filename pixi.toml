@@ -32,7 +32,6 @@ DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP marimo edit src/nuremics_studio/n
 
 [feature.CANTILEVER_SHEAR_APP.dependencies]
 pythonocc-core = ">=7.4.0,<8"
-vtk = "=9.6.0"
 openpyxl = ">=3.1.5,<4"
 sofa-app = "=25.6.0"
 sofa-python3 = "=25.6.0"
@@ -41,8 +40,8 @@ sofa-python3 = "=25.6.0"
 gmsh = ">=4.15.0,<5"
 meshio = ">=5.3.5,<6"
 numpy = ">=2.4.2,<3"
-pyvista = { version = "==0.47.1", extras = ["jupyter"] }
-trame-vtk = "<2.10.3"
+pyvista = { version = ">=0.48.0,<1", extras = ["jupyter"] }
+imageio = { version =  ">=2.37.0,<3", extras = ["ffmpeg"] }
 
 [feature.CANTILEVER_SHEAR_APP.tasks]
 CANTILEVER_SHEAR_APP = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
@@ -50,14 +49,13 @@ CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo
 
 [feature.FLOW_BEND_APP.dependencies]
 pythonocc-core = ">=7.4.0,<8"
-vtk = "=9.6.0"
 
 [feature.FLOW_BEND_APP.pypi-dependencies]
 gmsh = ">=4.15.0,<5"
 meshio = ">=5.3.5,<6"
 numpy = ">=2.4.2,<3"
-pyvista = { version = "==0.47.1", extras = ["jupyter"] }
-trame-vtk = "<2.10.3"
+pyvista = { version = ">=0.48.0,<1", extras = ["jupyter"] }
+imageio = { version =  ">=2.37.0,<3", extras = ["ffmpeg"] }
 
 [feature.FLOW_BEND_APP.tasks]
 FLOW_BEND_APP = "NUREMICS_APP=simulation.FLOW_BEND_APP marimo run src/nuremics_studio/nuRemics_App.py"

@@ -62,8 +62,8 @@ def results(
             )
         )
 
-        #result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
-        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -81,15 +81,15 @@ def results(
             color="#4cace6",
             show_edges=True,
             edge_color="black",
-            specular=0.5,
+            lighting=False,
         )
         plotter.view_xz()
         plotter.export_html(
             filename=full_working_path / "mesh.html",
         )
 
-        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
-        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -129,9 +129,8 @@ def results(
                 filename=full_working_path / f"{label.lower()}.html",
             )
 
-            # tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
-            tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
-
+            tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
+            # tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
 
         result = mo.ui.tabs(tabs)
 
@@ -143,6 +142,15 @@ def results(
 
         full_working_path = Path(os.path.split(value)[0])
         relative_path = full_working_path.relative_to(working_path)
+
+        tabs = {}
+
+        tabs["Animation"] = mo.video(
+            src=os.path.join(value, "animation.mp4"),
+            controls=True,
+            autoplay=True,
+            loop=True,
+        )
 
         mesh0 = pv.read(os.path.join(value, "mesh.msh"))
         
@@ -161,12 +169,13 @@ def results(
         plotter = pv.Plotter()
         plotter.add_mesh(
             mesh=mesh0,
+            specular=0.3,
             color="white",
             culling="front",
         )
         plotter.add_mesh(
             mesh=slice,
-            specular=0.3,
+            lighting=False,
             cmap="jet",
             scalars=velocity_magnitude,
             scalar_bar_args={
@@ -178,8 +187,10 @@ def results(
             filename=full_working_path / "solution.html",
         )
 
-        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
-        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        # tabs["3D"] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+
+        result = mo.ui.tabs(tabs)
 
         return result
 

@@ -37,9 +37,9 @@ apps:
         - https://img.shields.io/badge/Pandas-2.1.1+-0b0153?style=flat&logo=pandas&logoColor=white
         - https://img.shields.io/badge/pythonocc--core-7.4.0+-f7941e
         - https://img.shields.io/badge/Gmsh-4.15.0+-ffffff
+        - https://img.shields.io/badge/PyVista-+0.48.0-00b25e
         - https://img.shields.io/badge/meshio-5.3.5+-81ecec
-        - https://img.shields.io/badge/VTK-9.6.0-064f8d
-        - https://img.shields.io/badge/PyVista-0.47.1-00b25e
+        - https://img.shields.io/badge/imageio-2.37.0+-000000
         - https://img.shields.io/badge/SOFA Framework-25.6.0-e84e1c
         - https://img.shields.io/badge/matplotlib-3.9.4+-11557c
       visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/CANTILEVER_SHEAR_APP.png
@@ -55,9 +55,9 @@ apps:
         - https://img.shields.io/badge/NumPy-2.4.2+-4dabcf?style=flat&logo=numpy&logoColor=white
         - https://img.shields.io/badge/pythonocc--core-7.4.0+-f7941e
         - https://img.shields.io/badge/Gmsh-4.15.0+-ffffff
+        - https://img.shields.io/badge/PyVista-+0.48.0-00b25e
         - https://img.shields.io/badge/meshio-5.3.5+-81ecec
-        - https://img.shields.io/badge/VTK-9.6.0-064f8d
-        - https://img.shields.io/badge/PyVista-0.47.1-00b25e
+        - https://img.shields.io/badge/imageio-2.37.0+-000000
         - https://img.shields.io/badge/FEniCSx-0.10.0.post2-bd0000
         - https://img.shields.io/badge/matplotlib-3.9.4+-11557c
       visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/FLOW_BEND_APP.png
