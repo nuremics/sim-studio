@@ -62,8 +62,8 @@ def results(
             )
         )
 
-        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
-        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -88,8 +88,8 @@ def results(
             filename=full_working_path / "mesh.html",
         )
 
-        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
-        # result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
+        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -129,8 +129,8 @@ def results(
                 filename=full_working_path / f"{label.lower()}.html",
             )
 
-            tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
-            # tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
+            # tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
+            tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
 
         result = mo.ui.tabs(tabs)
 
@@ -187,10 +187,29 @@ def results(
             filename=full_working_path / "solution.html",
         )
 
-        tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
-        # tabs["3D"] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        # tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        tabs["3D"] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/solution.html" width="100%" height="500"></iframe>')
 
         result = mo.ui.tabs(tabs)
+
+        return result
+
+    def _probes_output(
+        value: str,
+    ) -> mo.vstack:
+        
+        image = mo.image(
+            src=value,
+            width=700,
+        )
+
+        result = mo.vstack([
+            mo.vstack([mo.md("    ")]),
+            mo.vstack([mo.md("    ")]),
+            mo.vstack([mo.md("    ")]),
+            mo.vstack([mo.md("    ")]),
+            mo.vstack([image], align="center"),
+        ])
 
         return result
 
@@ -199,7 +218,7 @@ def results(
         "mesh.msh": _mesh_output,
         "model.vtk": _model_output,
         "solution": _solution_output,
-        # "deflection.png": _deflection_output,
+        "probes.png": _probes_output,
         # "overall_comparisons.png": _overall_output,
         # "overall_errors.csv": _errors_output,
     }
