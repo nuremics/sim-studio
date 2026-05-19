@@ -804,19 +804,22 @@ def results(
             dict_results = {}
             for result_key, builder in dict_results_builder.items():
 
-                if isinstance(dict_paths[result_key], dict):
-                    result = {}
-                    for key, value in dict_paths[result_key].items():
-                        result[key] = builder(value)
-                    all_results = mo.accordion(result)
+                if dict_paths[result_key] is not None:
 
-                else:
-                    if builder(dict_paths[result_key]) is not None: 
-                        all_results = builder(dict_paths[result_key])
+                    if isinstance(dict_paths[result_key], dict):
+                        result = {}
+                        for key, value in dict_paths[result_key].items():
+                            result[key] = builder(value)
+                        all_results = mo.accordion(result)
+
                     else:
-                        continue
+                        if builder(dict_paths[result_key]) is not None: 
+                            all_results = builder(dict_paths[result_key])
+                        else:
+                            continue
 
-                dict_results[result_key] = all_results
+                    dict_results[result_key] = all_results
+                    
             dict_studies_results[study] = mo.ui.tabs(dict_results)
         widget = mo.ui.tabs(dict_studies_results)
     

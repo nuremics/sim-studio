@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import glob
 import shutil
 from pathlib import Path
 
@@ -9,8 +10,9 @@ import numpy as np
 import pyvista as pv
 from OCC.Core.BRep import BRep_Builder
 from OCC.Core.BRepTools import breptools
-from OCC.Core.TopAbs import TopAbs_WIRE
-from OCC.Core.TopoDS import TopoDS_Shape, topods
+from OCC.Core.TopAbs import TopAbs_FACE
+from OCC.Core.TopExp import TopExp_Explorer
+from OCC.Core.TopoDS import TopoDS_Shape
 from OCC.Display.WebGl import x3dom_renderer
 
 
@@ -34,14 +36,10 @@ def results(
         builder = BRep_Builder()
         breptools.Read(shape, value, builder)
 
-        if shape.ShapeType() == TopAbs_WIRE:
-            shape = topods.Wire(shape)
-
         display = x3dom_renderer.X3DomRenderer()
         display.DisplayShape(
             shape=shape,
             export_edges=True,
-            # transparency=0.9,
         )
         display.generate_html_file(
             axes_plane=False,
@@ -62,8 +60,74 @@ def results(
             )
         )
 
-        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
-        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/html/index.html" width="100%" height="500"></iframe>')
+
+        return result
+
+    def _labeling_output(
+        value: str,
+    ) -> mo.Html:
+
+        full_working_path = Path(os.path.split(value)[0])
+        relative_path = full_working_path.relative_to(working_path)
+
+        with open(value) as f:
+            dict_labels = json.load(f)
+
+        shape = TopoDS_Shape()
+        builder = BRep_Builder()
+        breptools.Read(shape, dict_labels["geometry"], builder)
+
+        tabs = {}
+        for label in ["Inlet", "Outlet", "Walls"]:
+
+            label_path = full_working_path / label
+            if label_path.exists():
+                shutil.rmtree(label_path)
+
+            html_path = label_path / "html"
+
+            display = x3dom_renderer.X3DomRenderer()
+            display.DisplayShape(
+                shape=shape,
+                transparency=0.9,
+            )
+
+            index = 1
+            exp = TopExp_Explorer(shape, TopAbs_FACE)
+            while exp.More():
+                entity = exp.Current()
+                if index in dict_labels["entities"][label]["ids"]:
+                    display.DisplayShape(
+                        shape=entity,
+                        color=(1.0, 0.0, 0.0),
+                        transparency=0.0,
+                    )
+                exp.Next()
+                index += 1
+
+            display.generate_html_file(
+                axes_plane=False,
+                axes_plane_zoom_factor=2.0,
+            )
+
+            shutil.copytree(
+                src=display._path,
+                dst=html_path,
+                dirs_exist_ok=True,
+            )
+            html_file = html_path / "index.html"
+            html_file.write_text(
+                data=re.sub(
+                    pattern=r"background\s*:\s*linear-gradient\([^)]+\)",
+                    repl="background: white",
+                    string=html_file.read_text(),
+                )
+            )
+
+            tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label}/html/index.html" width="100%" height="500"></iframe>')
+
+        result = mo.ui.tabs(tabs)
 
         return result
 
@@ -88,51 +152,7 @@ def results(
             filename=full_working_path / "mesh.html",
         )
 
-        # result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
-        result = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
-
-        return result
-
-    def _model_output(
-        value: str,
-    ) -> mo.ui.tabs:
-
-        full_working_path = Path(os.path.split(value)[0])
-        relative_path = full_working_path.relative_to(working_path)
-
-        mesh: pv.UnstructuredGrid = pv.read(value)
-
-        tabs = {}
-        for label in ["Inlet", "Outlet", "Walls"]:
-
-            boundary = mesh.threshold(
-                value=(1, 1),
-                scalars=label,
-                all_scalars=True,
-            )
-
-            plotter = pv.Plotter()
-            plotter.add_mesh(
-                mesh=mesh,
-                color="white",
-                culling="front",
-                specular=0.3,
-            )
-            plotter.add_mesh(
-                mesh=boundary,
-                color="red",
-                ambient=1.0,
-                show_vertices=True,
-            )
-            plotter.view_xz()
-            plotter.export_html(
-                filename=full_working_path / f"{label.lower()}.html",
-            )
-
-            # tabs[label] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
-            tabs[label] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/{label.lower()}.html" width="100%" height="500"></iframe>')
-
-        result = mo.ui.tabs(tabs)
+        result = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/mesh.html" width="100%" height="500"></iframe>')
 
         return result
 
@@ -152,12 +172,15 @@ def results(
             loop=True,
         )
 
+        def _extract_number(filename: str) -> int:
+            match = re.search(r'solution(\d+)\.vtu$', filename)
+            return int(match.group(1)) if match else -1
+
+        results = glob.glob(os.path.join(value, "dump", "u*.pvtu"))
+        results = sorted(results, key=_extract_number)
+
         mesh0 = pv.read(os.path.join(value, "mesh.msh"))
-        
-        reader = pv.get_reader(os.path.join(value, "dump", "u.pvd"))
-        times = reader.time_values
-        reader.set_active_time_point(len(times) - 1)
-        mesh: pv.UnstructuredGrid = reader.read()[0]
+        mesh = pv.read(results[-1])
 
         slice = mesh.slice(
             normal=[0, 1, 0],
@@ -187,14 +210,13 @@ def results(
             filename=full_working_path / "solution.html",
         )
 
-        # tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
-        tabs["3D"] = mo.Html(f'<iframe src="https://nuremics.github.io/use-cases/simulation/flow-bend/results/{relative_path}/solution.html" width="100%" height="500"></iframe>')
+        tabs["3D"] = mo.Html(f'<iframe src="http://localhost:8000/{relative_path}/solution.html" width="100%" height="500"></iframe>')
 
         result = mo.ui.tabs(tabs)
 
         return result
 
-    def _probes_output(
+    def _plots_output(
         value: str,
     ) -> mo.vstack:
         
@@ -213,14 +235,35 @@ def results(
 
         return result
 
+    def _overall_output(
+        value: str,
+    ) -> mo.vstack:
+
+        if Path(value).exists():
+            image = mo.image(
+                src=value,
+                width=1000,
+            )
+            result = mo.vstack([
+                mo.vstack([mo.md("    ")]),
+                mo.vstack([mo.md("    ")]),
+                mo.vstack([mo.md("    ")]),
+                mo.vstack([mo.md("    ")]),
+                mo.vstack([image], align="center"),
+            ])
+        else:
+            result = None
+
+        return result
+
     dict_results_builder = {
         "geometry.brep": _geometry_output,
+        "labels.json": _labeling_output,
         "mesh.msh": _mesh_output,
-        "model.vtk": _model_output,
         "solution": _solution_output,
-        "probes.png": _probes_output,
-        # "overall_comparisons.png": _overall_output,
-        # "overall_errors.csv": _errors_output,
+        "probes.png": _plots_output,
+        "profiles.png": _plots_output,
+        "overall_comparisons.png": _overall_output,
     }
 
     return dict_results_builder
