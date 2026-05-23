@@ -27,8 +27,8 @@ xlsxwriter = ">=3.2.3,<4"
 openpyxl = ">=3.1.5,<4"
 
 [feature.DEMO_APP.tasks]
-DEMO_APP = "NUREMICS_APP=general.DEMO_APP marimo run src/nuremics_studio/nuRemics_App.py"
-DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+DEMO_APP = "NUREMICS_APP=general.DEMO_APP python -m marimo run src/nuremics_studio/nuRemics_App.py"
+DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP python -m marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [environments]
 demo = ["DEMO_APP"]
