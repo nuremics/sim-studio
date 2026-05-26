@@ -254,6 +254,7 @@ def studies(
 
 
 def config(
+    app: Application,
     dict_studies: dict,
     set_state: mo.state,
 ) -> tuple[mo.ui.tabs, dict]:
@@ -273,7 +274,9 @@ def config(
         list_wgt.append(mo.vstack([execute_wgt]))
         dict_widget[key]["execute"] = execute_wgt
 
-        list_wgt.append(mo.md("**INPUT PARAMETERS**"))
+        # Parameters
+        if app.workflow.user_params:
+            list_wgt.append(mo.md("**INPUT PARAMETERS**"))
 
         dict_user_params_wgt = {}
         for k, v in value["user_params"].items():
@@ -291,7 +294,9 @@ def config(
 
         dict_widget[key]["user_params"] = dict_user_params_wgt
 
-        list_wgt.append(mo.md("**INPUT PATHS**"))
+        # Paths
+        if app.workflow.user_paths:
+            list_wgt.append(mo.md("**INPUT PATHS**"))
 
         dict_user_paths_wgt = {}
         for k, v in value["user_paths"].items():
@@ -799,19 +804,22 @@ def results(
             dict_results = {}
             for result_key, builder in dict_results_builder.items():
 
-                if isinstance(dict_paths[result_key], dict):
-                    result = {}
-                    for key, value in dict_paths[result_key].items():
-                        result[key] = builder(value)
-                    all_results = mo.accordion(result)
+                if dict_paths[result_key] is not None:
 
-                else:
-                    if builder(dict_paths[result_key]) is not None: 
-                        all_results = builder(dict_paths[result_key])
+                    if isinstance(dict_paths[result_key], dict):
+                        result = {}
+                        for key, value in dict_paths[result_key].items():
+                            result[key] = builder(value)
+                        all_results = mo.accordion(result)
+
                     else:
-                        continue
+                        if builder(dict_paths[result_key]) is not None: 
+                            all_results = builder(dict_paths[result_key])
+                        else:
+                            continue
 
-                dict_results[result_key] = all_results
+                    dict_results[result_key] = all_results
+                    
             dict_studies_results[study] = mo.ui.tabs(dict_results)
         widget = mo.ui.tabs(dict_studies_results)
     

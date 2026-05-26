@@ -54,7 +54,9 @@ def get_app_features(
         "use_case_description": None,
         "config": None,
     }
-    app_features.update(dict_features["apps"][app_category][app_name])
+    if app_category in dict_features["apps"]:
+        if app_name in dict_features["apps"][app_category]:
+            app_features.update(dict_features["apps"][app_category][app_name])
 
     if app_features["logo"] is None:
         app_features["logo"] = dict_features["common"]["logo"]
@@ -62,7 +64,11 @@ def get_app_features(
         app_features["color"] = dict_features["common"]["color"]
 
     common_deps = dict_features["common"]["dependencies"]
-    app_deps = app_features["dependencies"]
+    if app_features["dependencies"] is not None:
+        app_deps = app_features["dependencies"]
+    else:
+        app_deps = []
+    
     app_features["dependencies"] = common_deps + app_deps
     
     if os.path.split(app_features["logo"])[0] == "":
@@ -103,8 +109,11 @@ def load_module(
 
     try:
         module = importlib.import_module(module_path)
-    except ModuleNotFoundError:
-        module = None
+    except ModuleNotFoundError as e:
+        if e.name == module_path:
+            module = None
+        else:
+            raise
 
     return module
 
