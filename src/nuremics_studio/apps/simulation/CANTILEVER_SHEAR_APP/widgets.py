@@ -9,7 +9,7 @@ import pandas as pd
 import pyvista as pv
 from OCC.Core.BRep import BRep_Builder
 from OCC.Core.BRepTools import breptools
-from OCC.Core.TopAbs import TopAbs_WIRE, TopAbs_FACE
+from OCC.Core.TopAbs import TopAbs_FACE, TopAbs_WIRE
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopoDS import TopoDS_Shape, topods
 from OCC.Display.WebGl import x3dom_renderer

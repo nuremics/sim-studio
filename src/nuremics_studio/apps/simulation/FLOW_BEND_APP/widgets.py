@@ -1,7 +1,7 @@
+import glob
 import json
 import os
 import re
-import glob
 import shutil
 from pathlib import Path
 
