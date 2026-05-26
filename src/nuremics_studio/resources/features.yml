@@ -62,6 +62,8 @@ apps:
         - https://img.shields.io/badge/FEniCSx-0.10.0.post2-bd0000
         - https://img.shields.io/badge/matplotlib-3.9.4+-11557c
       visual: https://raw.githubusercontent.com/nuremics/nuremics-docs/main/docs/images/FLOW_BEND_APP.png
+      app_link: https://github.com/nuremics/sim-labs/tree/main/src/nuremics_labs/apps/simulation/FLOW_BEND_APP
+      use_case_link: https://doi.org/10.1177/1687814016669472
       use_case_title: Laminar flow in a 90-degree bend
       use_case_description: >
         Computational Fluid Dynamics (CFD) benchmark focusing on
