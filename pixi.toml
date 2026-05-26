@@ -27,8 +27,8 @@ xlsxwriter = ">=3.2.3,<4"
 openpyxl = ">=3.1.5,<4"
 
 [feature.DEMO_APP.tasks]
-DEMO_APP = "NUREMICS_APP=general.DEMO_APP marimo run src/nuremics_studio/nuRemics_App.py"
-DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+DEMO_APP = "NUREMICS_APP=general.DEMO_APP python -m marimo run src/nuremics_studio/nuRemics_App.py"
+DEMO_APP-edit = "NUREMICS_APP=general.DEMO_APP python -m marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [feature.CANTILEVER_SHEAR_APP.dependencies]
 pythonocc-core = ">=7.4.0,<8"
@@ -44,8 +44,8 @@ pyvista = { version = ">=0.48.0,<1", extras = ["jupyter"] }
 imageio = { version =  ">=2.37.0,<3", extras = ["ffmpeg"] }
 
 [feature.CANTILEVER_SHEAR_APP.tasks]
-CANTILEVER_SHEAR_APP = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo run src/nuremics_studio/nuRemics_App.py"
-CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+CANTILEVER_SHEAR_APP = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP python -m marimo run src/nuremics_studio/nuRemics_App.py"
+CANTILEVER_SHEAR_APP-edit = "NUREMICS_APP=simulation.CANTILEVER_SHEAR_APP python -m marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [feature.FLOW_BEND_APP.dependencies]
 pythonocc-core = ">=7.4.0,<8"
@@ -58,8 +58,8 @@ pyvista = { version = ">=0.48.0,<1", extras = ["jupyter"] }
 imageio = { version =  ">=2.37.0,<3", extras = ["ffmpeg"] }
 
 [feature.FLOW_BEND_APP.tasks]
-FLOW_BEND_APP = "NUREMICS_APP=simulation.FLOW_BEND_APP marimo run src/nuremics_studio/nuRemics_App.py"
-FLOW_BEND_APP-edit = "NUREMICS_APP=simulation.FLOW_BEND_APP marimo edit src/nuremics_studio/nuRemics_App.py"
+FLOW_BEND_APP = "NUREMICS_APP=simulation.FLOW_BEND_APP python -m marimo run src/nuremics_studio/nuRemics_App.py"
+FLOW_BEND_APP-edit = "NUREMICS_APP=simulation.FLOW_BEND_APP python -m marimo edit src/nuremics_studio/nuRemics_App.py"
 
 [environments]
 demo = ["DEMO_APP"]
